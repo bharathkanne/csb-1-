@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <title>Blog app</title>
+        <link rel="stylesheet" href="static/main.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+            .success {
+                border: solid;
+                border-radius: .5em;
+                padding: .3em;
+                background-color: rgb(31, 171, 12);
+                margin-bottom: 1em;
+            }
+
+            .error {
+                border: solid;
+                border-radius: .5em;
+                padding: .3em;
+                background-color: rgb(207, 20, 20);
+                margin-bottom: 1em;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <h2>Create an account</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+            <div class="{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post" action="saveuser">
+			{% csrf_token %}
+            <input type="text" name="email" placeholder="email">
+            <br>
+            <input type="text" name="username" placeholder="username">
+            <br>
+            <input type="text" name="password" placeholder="password">
+            <br>
+            <textarea name="secret" rows="3" cols="40" placeholder="What is your biggest secret?"></textarea>
+            <br>
+            <input type="submit" value="Create"/>
+        </form>
+    </body>
+
+</html>
